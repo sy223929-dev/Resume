@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surendra Yadav - Portfolio</title>
+    <meta name="description" content="Professional Portfolio of Surendra Yadav - Accountant, Relationship Manager, and Web Developer based in Nautanwa, UP.">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts: Poppins (Clean & Modern) -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* =========================================
+           CSS VARIABLES & RESET
+           ========================================= */
+        :root {
+            --primary-color: #6366f1;       /* Indigo/Purple - CodeWithHarry Vibe */
+            --primary-dark: #4338ca;        
+            --accent-color: #8b5cf6;        /* Violet Accent */
+            --bg-light: #f3f4f6;            
+            --bg-white: #ffffff;
+            --text-dark: #111827;           
+            --text-light: #4b5563;          
+            --border-color: #e5e7eb;
+            --success-color: #10b981;
+            --gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.7;
+            background-color: var(--bg-light);
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Utility Class for Animations */
+        .hidden {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease;
+        }
+
+        .show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* =========================================
+           HEADER & NAVIGATION
+           ========================================= */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px); /* Glassmorphism */
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            color: var(--text-dark);
+            font-size: 1rem;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: -5px;
+            left: 0;
+            background: var(--gradient);
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-dark);
+        }
+
+        /* =========================================
+           HERO SECTION
+           ========================================= */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle at top left, #eef2ff, #ffffff);
+            padding-top: 80px;
+        }
+
+        .hero-content {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 800px;
+        }
+
+        /* Profile Photo with Glow */
+        .profile-container {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin-bottom: 30px;
+            padding: 5px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: var(--shadow-lg);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid white;
+        }
+
+        .upload-overlay {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: var(--primary-color);
+            color: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(99, 102, 241, 0.4);
+            transition: var(--transition);
+            border: 3px solid white;
+        }
+
+        .upload-overlay:hover {
+            transform: scale(1.1) rotate(10deg);
+            background: var(--primary-dark);
+        }
+
+        #photo-upload { display: none; }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+
+        /* Typewriter Effect Styles */
+        .typewriter-text {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 25px;
+            min-height: 1.6em;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 3px;
+            background-color: var(--text-dark);
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .hero p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            max-width: 600px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 35px;
+            background: var(--gradient);
+            color: white;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-outline {
+            background: white;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            margin-left: 15px;
+            box-shadow: none;
+        }
+
+        .btn-outline:hover {
+            background: var(--bg-light);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* =========================================
+           SECTIONS GENERAL
+           ========================================= */
+        .section-header {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 5px;
+            background: var(--gradient);
+            margin: 15px auto 0;
+            border-radius: 5px;
+        }
+
+        /* =========================================
+           ABOUT
+           ========================================= */
+        .about-container {
+            background: white;
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: var(--shadow-lg);
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-text p {
+            font-size: 1.05rem;
+            margin-bottom: 20px;
+            color: var(--text-light);
+        }
+
+        .info-box {
+            background: var(--bg-light);
+            padding: 25px;
+            border-radius: 15px;
+        }
+
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .info-item:last-child { border-bottom: none; }
+        .info-item span { font-weight: 600; color: var(--text-dark); }
+        .info-item small { color: var(--text-light); }
+
+        /* =========================================
+           SKILLS (Cards with Hover)
+           ========================================= */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-card {
+            background: white;
+            padding: 35px;
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            border: 1px solid rgba(0,0,0,0.03);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--gradient);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .skill-card:hover::before {
+            opacity: 1;
+        }
+
+        .skill-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .skill-card h3 i { color: var(--primary-color); }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-tag {
+            background: #eef2ff;
+            color: var(--primary-dark);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* =========================================
+           EXPERIENCE (Vertical Timeline)
+           ========================================= */
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background: #e5e7eb;
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            margin-bottom: 60px;
+            width: 100%;
+            position: relative;
+        }
+
+        .timeline-content {
+            width: 45%;
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+            position: relative;
+            transition: var(--transition);
+            border-top: 4px solid var(--primary-color);
+        }
+
+        .timeline-content:hover {
+            transform: scale(1.02);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-left: auto;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            top: 30px;
+            width: 20px;
+            height: 20px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2);
+            transform: translateX(-50%);
+            z-index: 10;
+        }
+
+        .timeline-date {
+            display: inline-block;
+            background: #eef2ff;
+            color: var(--primary-color);
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .timeline-content h3 { font-size: 1.2rem; margin-bottom: 5px; }
+        .timeline-content h4 { font-size: 0.95rem; color: var(--text-light); margin-bottom: 15px; font-weight: 500; }
+        .timeline-content ul { padding-left: 20px; }
+        .timeline-content li { list-style: disc; color: var(--text-light); margin-bottom: 6px; font-size: 0.95rem; }
+
+        /* =========================================
+           EDUCATION & AWARDS
+           ========================================= */
+        .edu-wrapper {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .edu-card {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+        }
+
+        .edu-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .edu-icon {
+            width: 60px;
+            height: 60px;
+            background: #eef2ff;
+            color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin: 0 auto 20px;
+        }
+
+        .award-item {
+            background: white;
+            padding: 20px 30px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transition: var(--transition);
+            border-left: 5px solid #f59e0b;
+        }
+
+        .award-item:hover {
+            transform: translateX(10px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* =========================================
+           CONTACT & FOOTER
+           ========================================= */
+        .contact-box {
+            background: white;
+            padding: 60px;
+            border-radius: 20px;
+            box-shadow: var(--shadow-lg);
+            text-align: center;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .contact-item i {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        footer {
+            background: #0f172a;
+            color: #94a3b8;
+            padding: 60px 0 30px;
+            text-align: center;
+        }
+
+        .social-icons {
+            margin-bottom: 30px;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            width: 45px;
+            height: 45px;
+            background: rgba(255,255,255,0.05);
+            color: white;
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+            margin: 0 10px;
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .social-icons a:hover {
+            background: var(--primary-color);
+            transform: translateY(-5px);
+        }
+
+        /* =========================================
+           MOBILE RESPONSIVENESS
+           ========================================= */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 30px;
+                box-shadow: var(--shadow-lg);
+                gap: 20px;
+                text-align: center;
+            }
+            
+            .nav-links.active { display: flex; }
+            .menu-toggle { display: block; }
+            
+            .hero h1 { font-size: 2.5rem; }
+            .about-container { grid-template-columns: 1fr; }
+            
+            .timeline::before { left: 20px; }
+            .timeline-content { width: calc(100% - 60px); margin-left: 60px !important; }
+            .timeline-dot { left: 20px; }
+            .timeline-item:nth-child(even) .timeline-content { margin-left: 60px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Surendra<span style="color:var(--primary-color)">.Dev</span></div>
+                <div class="menu-toggle" id="mobile-menu"><i class="fas fa-bars"></i></div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#education">Education</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container hero-content">
+            <div class="profile-container hidden">
+                <!-- IMPORTANT: Image name set to your uploaded file -->
+                <img src="1000367540.jpg" onerror="this.src='https://via.placeholder.com/200?text=S.Y.'" alt="Surendra Yadav" class="profile-img" id="profile-display">
+                <label for="photo-upload" class="upload-overlay" title="Upload New Photo">
+                    <i class="fas fa-camera"></i>
+                </label>
+                <input type="file" id="photo-upload" accept="image/*">
+            </div>
+
+            <div class="hidden">
+                <p style="margin-bottom: 10px; font-weight: 500; color: var(--primary-color);">Hi there, I'm</p>
+                <h1>Surendra Yadav</h1>
+                
+                <!-- Typing Effect Wrapper -->
+                <div class="typewriter-text">
+                    I am a <span id="typing"></span><span class="cursor">|</span>
+                </div>
+
+                <p>Merging the discipline of Accountancy with the innovation of Full-Stack Development. I build efficient digital solutions.</p>
+                
+                <div style="margin-top: 30px;">
+                    <a href="#contact" class="btn">Hire Me <i class="fas fa-paper-plane" style="margin-left:8px;"></i></a>
+                    <a href="#experience" class="btn btn-outline">My Journey</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="section-header hidden">
+                <h2>About Me</h2>
+            </div>
+            <div class="about-container hidden">
+                <div class="about-text">
+                    <p>I am a multifaceted professional based in <strong>Nautanwa, Uttar Pradesh</strong>. My journey started in the financial sector, where I mastered the art of managing relationships and handling complex financial data.</p>
+                    <p>However, my curiosity for technology led me to code. Today, I combine my analytical background with modern web technologies like <strong>Python, SQL, and JavaScript</strong> to build robust web applications.</p>
+                    <p>Whether it's balancing a ledger or debugging a script, I bring the same level of precision and dedication to every project.</p>
+                </div>
+                <div class="info-box">
+                    <div class="info-item"><span>Location:</span> <small>Nautanwa, UP, India</small></div>
+                    <div class="info-item"><span>Phone:</span> <small>+91 8577074763</small></div>
+                    <div class="info-item"><span>Email:</span> <small>sy223929@gmail.com</small></div>
+                    <div class="info-item"><span>Degree:</span> <small>B.A. (General Studies)</small></div>
+                    <div class="info-item"><span>Freelance:</span> <small style="color:var(--success-color); font-weight:bold;">Available</small></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" style="background: white;">
+        <div class="container">
+            <div class="section-header hidden">
+                <h2>Technical & Professional Skills</h2>
+            </div>
+            <div class="skills-grid">
+                <!-- Dev Skills -->
+                <div class="skill-card hidden">
+                    <h3><i class="fas fa-code"></i> Web Development</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">HTML5</span>
+                        <span class="skill-tag">CSS3</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">GitHub</span>
+                    </div>
+                </div>
+                <!-- Data Skills -->
+                <div class="skill-card hidden">
+                    <h3><i class="fas fa-database"></i> Data & Database</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">Data Entry</span>
+                        <span class="skill-tag">Record Keeping</span>
+                        <span class="skill-tag">Internet Research</span>
+                    </div>
+                </div>
+                <!-- Finance Skills -->
+                <div class="skill-card hidden">
+                    <h3><i class="fas fa-file-invoice-dollar"></i> Accounting</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Tally Prime</span>
+                        <span class="skill-tag">General Ledger</span>
+                        <span class="skill-tag">AP / AR</span>
+                        <span class="skill-tag">Loan Mgmt</span>
+                        <span class="skill-tag">Excel (Adv)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" style="background: var(--bg-light);">
+        <div class="container">
+            <div class="section-header hidden">
+                <h2>Work History</h2>
+            </div>
+            <div class="timeline">
+                
+                <div class="timeline-item hidden">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">Dec 2023 – Oct 2024</span>
+                        <h3>Prayas Financial Services</h3>
+                        <h4>Relationship Manager / Accountant | Gorakhpur</h4>
+                        <ul>
+                            <li>Spearheaded customer acquisition and loan disbursement.</li>
+                            <li>Maintained flawless financial records and data entry.</li>
+                            <li>Managed collections and bank deposits efficiently.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item hidden">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">Jan 2022 – Dec 2023</span>
+                        <h3>CreditAccess Grameen Ltd</h3>
+                        <h4>Relationship Manager / Accountant | Kaptanganj</h4>
+                        <ul>
+                            <li>Oversaw complete loan lifecycle from start to finish.</li>
+                            <li>Awarded for highest loan disbursement.</li>
+                            <li>Ensured 100% data accuracy in system records.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item hidden">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">Jan 2021 – Dec 2021</span>
+                        <h3>Alive Gic Nautanwa</h3>
+                        <h4>Insurance Assistant | Nautanwa</h4>
+                        <ul>
+                            <li>Consulted clients on General, Vehicle, and Heavy Insurance.</li>
+                            <li>Streamlined policy documentation workflow.</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Education & Awards -->
+    <section id="education" style="background: white;">
+        <div class="container">
+            <div class="section-header hidden">
+                <h2>Education & Achievements</h2>
+            </div>
+            
+            <div class="edu-wrapper">
+                <div class="edu-card hidden">
+                    <div class="edu-icon"><i class="fas fa-user-graduate"></i></div>
+                    <h3>Bachelor of Arts</h3>
+                    <p>Siddharth University</p>
+                    <small>2020 – 2023</small>
+                </div>
+                <div class="edu-card hidden">
+                    <div class="edu-icon"><i class="fas fa-school"></i></div>
+                    <h3>Intermediate (12th)</h3>
+                    <p>NIC Nautanwa</p>
+                    <small>Maths & Science Group</small>
+                </div>
+            </div>
+
+            <div style="max-width: 800px; margin: 0 auto;">
+                <h3 style="margin-bottom: 20px; text-align: center;" class="hidden">Honors</h3>
+                <div class="award-item hidden">
+                    <i class="fas fa-trophy" style="color:#f59e0b; font-size: 1.5rem;"></i>
+                    <div>
+                        <strong>Highest Loan Disbursement Award</strong>
+                        <div style="font-size: 0.9rem; color: #666;">Prayas Financial Services</div>
+                    </div>
+                </div>
+                <div class="award-item hidden">
+                    <i class="fas fa-star" style="color:#f59e0b; font-size: 1.5rem;"></i>
+                    <div>
+                        <strong>Performance Recognition</strong>
+                        <div style="font-size: 0.9rem; color: #666;">CreditAccess Grameen Ltd</div>
+                    </div>
+                </div>
+                <div class="award-item hidden">
+                    <i class="fas fa-award" style="color:#f59e0b; font-size: 1.5rem;"></i>
+                    <div>
+                        <strong>Prize Winner - Hindustan Olympiad</strong>
+                        <div style="font-size: 0.9rem; color: #666;">Academic Excellence</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+        <div class="container">
+            <div class="contact-box hidden">
+                <h2 style="margin-bottom: 10px;">Let's Work Together</h2>
+                <p>Open for opportunities in Web Development and Accounting</p>
+                
+                <div class="contact-grid">
+                    <div class="contact-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <h3>Phone</h3>
+                        <p>+91 8577074763</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <h3>Email</h3>
+                        <p>sy223929@gmail.com</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h3>Location</h3>
+                        <p>Nautanwa, Maharajganj, UP</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+            <p>&copy; 2024 Surendra Yadav. Built with <i class="fas fa-heart" style="color:red"></i> & Code.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Animations -->
+    <script>
+        // 1. Navbar Toggle
+        const mobileBtn = document.getElementById('mobile-menu');
+        const nav = document.querySelector('.nav-links');
+        mobileBtn.addEventListener('click', () => {
+            nav.classList.toggle('active');
+        });
+
+        // 2. Profile Photo Upload
+        const photoInput = document.getElementById('photo-upload');
+        const profileImg = document.getElementById('profile-display');
+        photoInput.addEventListener('change', (e) => {
+            if(e.target.files[0]) {
+                const reader = new FileReader();
+                reader.onload = (e) => profileImg.src = e.target.result;
+                reader.readAsDataURL(e.target.files[0]);
+            }
+        });
+
+        // 3. Typing Effect
+        const textElement = document.getElementById('typing');
+        const texts = ["Full-Stack Developer", "Relationship Manager", "Accountant"];
+        let count = 0;
+        let index = 0;
+        let currentText = "";
+        let letter = "";
+
+        (function type() {
+            if (count === texts.length) {
+                count = 0;
+            }
+            currentText = texts[count];
+            letter = currentText.slice(0, ++index);
+
+            textElement.textContent = letter;
+            if (letter.length === currentText.length) {
+                setTimeout(() => {
+                    // Backspace effect logic (simplified here just to pause and switch)
+                    count++;
+                    index = 0;
+                }, 2000); // Wait 2s before switching
+            }
+            setTimeout(type, 150);
+        })();
+
+        // 4. Scroll Animation (Fade In Up)
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if(entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        });
+
+        const hiddenElements = document.querySelectorAll('.hidden');
+        hiddenElements.forEach((el) => observer.observe(el));
+    </script>
+</body>
+</html>
+
+
